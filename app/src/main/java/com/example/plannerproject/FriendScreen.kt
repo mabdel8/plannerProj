@@ -151,3 +151,5 @@ fun FriendScreen(navController: NavController){
     }
 //text input
 }
+
+//test code to see if commits still work
