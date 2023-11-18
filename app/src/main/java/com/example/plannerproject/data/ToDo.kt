@@ -7,5 +7,6 @@ import androidx.room.PrimaryKey
 data class ToDo(
     @PrimaryKey val id: Int?,
     val title: String,
-    val description: String
+    val description: String,
+    val points: Int?
 )

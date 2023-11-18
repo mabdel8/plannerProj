@@ -20,20 +20,20 @@ class ToDoRepositoryImpl(
     }
 
 
-    override suspend fun getToDoById(id: Int): ToDo? {
-        TODO("Not yet implemented")
+    override suspend fun getToDoById(id: Int): ToDoModel? {
+        return dao.getToDoById(id)?.asExternalModel()
     }
 
-    override suspend fun insertToDo(todo: ToDo) {
-        TODO("Not yet implemented")
+    override suspend fun insertToDo(todomodel: ToDoModel) {
+        dao.insertToDo(todomodel.toEntity())
     }
 
-    override suspend fun deleteToDo(todo: ToDo) {
-        TODO("Not yet implemented")
+    override suspend fun deleteToDo(todomodel: ToDoModel) {
+        dao.deleteToDo(todomodel.toEntity())
     }
 
-    override suspend fun updateToDo(todo: ToDo) {
-        TODO("Not yet implemented")
+    override suspend fun updateToDo(todomodel: ToDoModel) {
+        dao.updateToDo(todomodel.toEntity())
     }
 
 }

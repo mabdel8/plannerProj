@@ -7,5 +7,6 @@ package com.example.plannerproject.model
 data class ToDoModel(
     val id: Int? = null,
     val title: String = "",
-    val description: String = ""
+    val description: String = "",
+    val points: Int? = null
 )
