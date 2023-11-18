@@ -77,3 +77,5 @@ fun CheckboxLabel(text: String, points: Int) {
 
     }
 }
+
+// message in main
