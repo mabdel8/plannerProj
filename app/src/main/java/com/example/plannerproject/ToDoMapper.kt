@@ -4,9 +4,9 @@ import com.example.plannerproject.data.ToDo
 import com.example.plannerproject.model.ToDoModel
 
 fun ToDo.asExternalModel(): ToDoModel = ToDoModel(
-    id, title, description
+    id, task, points
 )
 
 fun ToDoModel.toEntity(): ToDo = ToDo(
-    id, title, description
+    id, task, points
 )

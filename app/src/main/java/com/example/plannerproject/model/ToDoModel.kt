@@ -6,7 +6,7 @@ package com.example.plannerproject.model
 //LAYER TO BE SEPARATE
 data class ToDoModel(
     val id: Int? = null,
-    val title: String = "",
-    val description: String = "",
+    val task: String = "",
     val points: Int? = null
 )
+

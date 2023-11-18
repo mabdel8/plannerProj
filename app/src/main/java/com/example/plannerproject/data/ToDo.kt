@@ -6,7 +6,6 @@ import androidx.room.PrimaryKey
 @Entity
 data class ToDo(
     @PrimaryKey val id: Int?,
-    val title: String,
-    val description: String,
+    val task: String,
     val points: Int?
 )
