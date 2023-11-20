@@ -55,6 +55,12 @@ fun Navigation() {
         ){
             LeaderScreen(navController = navController)
         }
+
+        composable(
+            route = Screen.AddFriendScreen.route
+        ){
+            AddFriendScreen(navController = navController)
+        }
     }
 }
 
