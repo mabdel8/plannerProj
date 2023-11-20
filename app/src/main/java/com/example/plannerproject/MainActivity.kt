@@ -3,6 +3,7 @@ package com.example.plannerproject
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
@@ -53,12 +54,16 @@ fun GreetingPreview() {
 fun CheckboxLabel(text: String, points: Int) {
     val checked = remember { mutableStateOf(false) }
 
-    Row {
+    Row(
+        modifier = Modifier.background(color = Color.White)
+    ) {
         Checkbox(
             checked = checked.value,
             onCheckedChange = { isChecked -> checked.value = isChecked },
         )
-        Row() {
+        Row(
+            modifier = Modifier.background(color = Color.White).padding(2.dp)
+        ) {
             Text("$text", fontSize = 30.sp)
             Text("+$points", fontSize = 12.sp, color = Color.Red, modifier = Modifier
                 .padding(horizontal = 5.dp)
