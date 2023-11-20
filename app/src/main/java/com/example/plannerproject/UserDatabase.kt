@@ -20,7 +20,7 @@ interface UserDao {
     suspend fun getUsers(): List<User>
 }
 
-    @Database (entities = [User::class],version = 6, exportSchema = false)
+    @Database (entities = [User::class],version = 9, exportSchema = false)
     abstract class UserDatabase: RoomDatabase(){
         abstract fun userDao(): UserDao
     }

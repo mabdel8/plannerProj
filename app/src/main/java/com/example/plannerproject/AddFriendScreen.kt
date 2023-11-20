@@ -51,14 +51,17 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.plannerproject.ui.theme.Screen
+import java.util.UUID
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter","UnrememberedMutableState")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AddFriendScreen(navController: NavController) {
+fun AddFriendScreen(navController: NavController, onAddUser: (User) -> Unit) {
 
 
     var inputText by remember { mutableStateOf("")}
+    val testFriend2 = User(UUID.randomUUID(),inputText,50)
 
     Scaffold(
         topBar = {
@@ -111,7 +114,7 @@ fun AddFriendScreen(navController: NavController) {
 
             )
 
-            ElevatedButton(onClick = {navController.navigate(Screen.FriendScreen.route)},
+            ElevatedButton(onClick = {   onAddUser(testFriend2)},
                 //shape = CutCornerShape(10),
                 colors = ButtonDefaults.buttonColors(containerColor = Color.Black),
                 modifier = Modifier.padding(20.dp).height(60.dp).width(160.dp)

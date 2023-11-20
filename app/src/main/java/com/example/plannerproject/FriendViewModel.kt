@@ -9,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.plannerproject.*
 import kotlinx.coroutines.launch
+import java.util.UUID
 
 class FriendViewModel(app: Application) : AndroidViewModel(app) {
     private val _users: MutableState<List<User>> = mutableStateOf(listOf())
@@ -17,14 +18,13 @@ class FriendViewModel(app: Application) : AndroidViewModel(app) {
     private val _waiting: MutableState<Boolean>
     val waiting: State<Boolean>
 
-    val testFriend = User(1,"TestFriend1",20)
+    val testFriend = User(UUID.randomUUID(),"TestFriend1",20)
 
 
     private val _repository: UserRepository = UserOfflineRepository(getApplication())
 
     init {
         viewModelScope.launch {
-            _repository.insertUser(testFriend)
             _users.value = _repository.getUsers()
         }
 
