@@ -1,4 +1,4 @@
-package com.example.plannerproject
+package com.example.plannerproject.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

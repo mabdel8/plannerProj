@@ -1,26 +1,33 @@
 package com.example.plannerproject.data
 
+import android.app.Application
+import androidx.room.Room
 import kotlinx.coroutines.flow.Flow
 
-class OfflineTodosRepository(private val todoDao: TodoDao) : TodosRepository{
-    override fun getAllTodosStream(): Flow<List<Todo>> {
-        return todoDao.getAllTodos()
-    }
+class OfflineTodosRepository(app: Application) : TodosRepository{
 
-    override fun getTodoStream(id: Int): Flow<Todo?> {
-        return todoDao.getTodo(id)
+    private val db: TodoDatabase
+
+    init {
+        // create the database
+        db = Room.databaseBuilder(app, TodoDatabase::class.java, "todo.db")
+            .fallbackToDestructiveMigration()
+            .build()
+    }
+    override fun getTodos(): List<Todo> {
+        return db.todoDao().getTodos()
     }
 
     override suspend fun insertTodo(todo: Todo) {
-        todoDao.insert(todo)
+        db.todoDao().insert(todo)
     }
 
     override suspend fun deleteTodo(todo: Todo) {
-        todoDao.delete(todo)
+        db.todoDao().delete(todo)
     }
 
     override suspend fun update(todo: Todo) {
-        todoDao.update(todo)
+        db.todoDao().update(todo)
     }
 
 }

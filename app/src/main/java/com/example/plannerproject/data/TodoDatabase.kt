@@ -1,22 +1,31 @@
 package com.example.plannerproject.data
 
 import android.content.Context
+import androidx.room.Dao
 import androidx.room.Database
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.Update
 
-@Database(entities = [Todo::class], version = 1, exportSchema = false)
+@Dao
+interface TodoDao {
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insert(todo: Todo)
+
+    @Update
+    suspend fun update(todo: Todo)
+
+    @Delete
+    suspend fun delete(todo: Todo)
+
+    @Query("SELECT * from todos")
+    fun getTodos(): List<Todo>
+}
+@Database(entities = [Todo::class], version = 6, exportSchema = false)
 abstract class TodoDatabase : RoomDatabase() {
-    abstract fun TodoDao(): TodoDao
-
-    companion object {
-        @Volatile
-        private var Instance: TodoDatabase? = null
-
-        fun getDatabase(context: Context): TodoDatabase {
-            return Instance ?: synchronized(this) {
-                Room.databaseBuilder(context, TodoDatabase::class.java, "todo_database").build().also { Instance = it }
-            }
-        }
-    }
+    abstract fun todoDao(): TodoDao
 }

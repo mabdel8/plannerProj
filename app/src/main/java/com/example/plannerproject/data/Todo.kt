@@ -8,6 +8,7 @@ class Todo(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     val task: String,
-    val points: Int
+    val points: Int,
+    val isComplete: Boolean
 )
 

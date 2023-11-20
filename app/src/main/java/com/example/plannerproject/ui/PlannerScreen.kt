@@ -1,4 +1,4 @@
-package com.example.plannerproject
+package com.example.plannerproject.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -18,6 +18,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.plannerproject.CheckboxLabel
 import com.example.plannerproject.ui.theme.Screen
 
 @Composable

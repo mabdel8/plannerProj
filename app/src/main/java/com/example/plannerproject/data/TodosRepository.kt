@@ -3,9 +3,7 @@ package com.example.plannerproject.data
 import kotlinx.coroutines.flow.Flow
 
 interface TodosRepository {
-    fun getAllTodosStream(): Flow<List<Todo>>
-
-    fun getTodoStream(id: Int): Flow<Todo?>
+    fun getTodos(): List<Todo>
 
     suspend fun insertTodo(todo: Todo)
 
