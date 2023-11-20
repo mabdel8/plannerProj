@@ -25,7 +25,6 @@ class FriendViewModel(app: Application) : AndroidViewModel(app) {
 
     init {
         viewModelScope.launch {
-            _repository.insertUser(testFriend)
             _users.value = _repository.getUsers()
         }
 

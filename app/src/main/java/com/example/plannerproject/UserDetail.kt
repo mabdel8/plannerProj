@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.paddingFromBaseline
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
@@ -32,7 +33,7 @@ fun UserDetail(
     OutlinedCard(
         colors = CardDefaults.cardColors(containerColor = Color.Red, contentColor = Color.White),
         border = BorderStroke(3.dp, Color.White),
-        modifier = Modifier.size(width = 400.dp, height = 100.dp).padding(10.dp)
+        modifier = Modifier.size(width = 400.dp, height = 100.dp).padding(5.dp)
 
     ) {
         Row(
