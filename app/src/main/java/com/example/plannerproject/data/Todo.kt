@@ -3,9 +3,11 @@ package com.example.plannerproject.data
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity
-data class ToDo(
-    @PrimaryKey val id: Int?,
+@Entity(tableName = "todos")
+class Todo(
+    @PrimaryKey(autoGenerate = true)
+    val id: Int,
     val task: String,
-    val points: Int?
+    val points: Int
 )
+

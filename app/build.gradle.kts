@@ -78,7 +78,6 @@ dependencies {
     //dagger
     implementation ("com.google.dagger:dagger:2.20")
     kapt ("com.google.dagger:dagger-compiler:2.20")
-    implementation("androidx.hilt:hilt-navigation-fragment:1.0.0")
 
 
     testImplementation("junit:junit:4.13.2")
