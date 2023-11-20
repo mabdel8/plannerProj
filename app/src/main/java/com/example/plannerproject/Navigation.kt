@@ -1,7 +1,9 @@
 package com.example.plannerproject
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -20,6 +22,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -27,15 +30,20 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.plannerproject.*
 import com.example.plannerproject.ui.theme.Screen
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun Navigation() {
     val navController = rememberNavController()
+    val vm: FriendViewModel = viewModel()
+
     NavHost(navController = navController, startDestination = Screen.MainScreen.route) {
         composable(route = Screen.MainScreen.route) {
             MainScreen(navController = navController)
@@ -45,10 +53,11 @@ fun Navigation() {
         ){
             PlannerScreen(navController = navController)
         }
+
         composable(
             route = Screen.FriendScreen.route
         ){
-            FriendScreen(navController = navController)
+            FriendListScreen(vm , navController)
         }
         composable(
             route = Screen.LeaderScreen.route
@@ -167,4 +176,23 @@ fun MainScreen(navController: NavController) {
 
 
     }
+
+}
+
+@OptIn(ExperimentalLayoutApi::class)
+@ExperimentalFoundationApi
+@Composable
+fun FriendListScreen(
+    vm: FriendViewModel,
+    navController: NavController
+) {
+    val users by vm.users
+    val waiting by vm.waiting
+
+    FriendScreen(
+        users,
+        waiting,
+        onDelete =vm::deleteUser,
+        navController
+    )
 }

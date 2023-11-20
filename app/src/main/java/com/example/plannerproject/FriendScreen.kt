@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
@@ -45,9 +46,13 @@ import com.example.plannerproject.ui.theme.Screen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FriendScreen(navController: NavController) {
-
-    var presses by remember { mutableIntStateOf(0) }
+fun FriendScreen(
+    users: List<User>,
+    waiting: Boolean,
+    onDelete: suspend (User) -> Unit,
+    navController: NavController,
+    modifier: Modifier = Modifier,
+) {
 
     Scaffold(
         topBar = {
@@ -101,22 +106,14 @@ fun FriendScreen(navController: NavController) {
                 .padding(innerPadding),
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
-            Text(
-                modifier = Modifier.padding(8.dp),
-                text = "Lazy column"
-            )
+            LazyColumn(
+            ){
+                items(users) { user ->
+                    UserDetail(user)
+                }
+            }
+
         }
     }
 }
-
-    //buttons, Buttos are all layedout on the right side of the screen
-        //back button will be used to take you back to main menu
-       /* Button(
-            onClick = { navController.navigate(Screen.MainScreen.route) },
-            colors = ButtonDefaults.buttonColors(Color.Red),
-            //shape = RectangleShape,
-            modifier = Modifier.offset(-5.dp, 5.dp)
-        ) {
-            Text(text = "Back")
-        } */
 
