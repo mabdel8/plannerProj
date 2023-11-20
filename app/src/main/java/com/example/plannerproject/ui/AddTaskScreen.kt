@@ -1,6 +1,7 @@
 package com.example.plannerproject.ui
 
 import android.annotation.SuppressLint
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -24,6 +25,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -34,13 +36,18 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.example.plannerproject.data.Todo
 import com.example.plannerproject.ui.theme.Screen
+import com.example.plannerproject.ui.todolist.TodoListViewModel
+import java.lang.Exception
+import java.util.UUID
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "UnrememberedMutableState")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AddTaskScreen(navController: NavController) {
+fun AddTaskScreen(navController: NavController, onAddTodo: (Todo) -> Unit) {
 
 
     var inputText by remember { mutableStateOf("")}
@@ -90,19 +97,26 @@ fun AddTaskScreen(navController: NavController) {
         ) {
             OutlinedTextField(
                 value = inputText,
-                modifier = Modifier.height(80.dp).width(300.dp),
+                modifier = Modifier
+                    .height(80.dp)
+                    .width(300.dp),
                 onValueChange = {inputText = it},
                 label = {Text(text="Enter Task", fontSize = 30.sp,)}
             )
+            val temp = Todo(UUID.randomUUID(),inputText,10,false)
 
-            ElevatedButton(onClick = {navController.navigate(Screen.PlannerScreen.route)},
+            ElevatedButton(onClick = {
+                onAddTodo(temp)
+                                     },
                 //shape = CutCornerShape(10),
                 colors = ButtonDefaults.buttonColors(containerColor = Color.Black),
-                modifier = Modifier.padding(20.dp).height(60.dp).width(160.dp)
+                modifier = Modifier
+                    .padding(20.dp)
+                    .height(60.dp)
+                    .width(160.dp)
             ){Text(text = "Add",
                 fontSize = 25.sp,
                 fontWeight = FontWeight.Bold )
-
             }
         }
     }

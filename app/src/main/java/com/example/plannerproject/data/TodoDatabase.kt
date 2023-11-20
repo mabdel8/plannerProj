@@ -25,7 +25,7 @@ interface TodoDao {
     @Query("SELECT * from todos")
     suspend fun getTodos(): List<Todo>
 }
-@Database(entities = [Todo::class], version = 6, exportSchema = false)
+@Database(entities = [Todo::class], version = 9, exportSchema = false)
 abstract class TodoDatabase : RoomDatabase() {
     abstract fun todoDao(): TodoDao
 }

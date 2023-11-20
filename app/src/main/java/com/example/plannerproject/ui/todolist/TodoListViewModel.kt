@@ -11,6 +11,7 @@ import com.example.plannerproject.data.OfflineTodosRepository
 import com.example.plannerproject.data.Todo
 import com.example.plannerproject.data.TodosRepository
 import kotlinx.coroutines.launch
+import java.util.UUID
 
 class TodoListViewModel(app: Application) : AndroidViewModel(app) {
     private val _todos: MutableState<List<Todo>> = mutableStateOf(listOf())
@@ -19,14 +20,13 @@ class TodoListViewModel(app: Application) : AndroidViewModel(app) {
     private val _waiting: MutableState<Boolean>
     val waiting: State<Boolean>
 
-    val temp = Todo(1,"test",13,false)
+    private val temp = Todo(UUID.randomUUID(),"test",13,false)
 
 
     private val _repository: TodosRepository = OfflineTodosRepository(getApplication())
 
     init {
         viewModelScope.launch {
-            _repository.insertTodo(temp)
             _todos.value = _repository.getTodos()
         }
 

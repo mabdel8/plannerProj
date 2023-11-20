@@ -59,7 +59,11 @@ fun Navigation() {
         composable(
             route = Screen.AddTaskScreen.route
         ){
-            AddTaskScreen(navController = navController)
+            AddTaskScreen(navController,
+                onAddTodo = { todo ->
+                    vm.addTodo(todo)
+                    navController.popBackStack()
+                })
         }
     }
 }
@@ -188,3 +192,4 @@ fun TodoListScreen(
         navController
     )
 }
+

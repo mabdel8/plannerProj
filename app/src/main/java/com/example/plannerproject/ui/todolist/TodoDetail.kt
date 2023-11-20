@@ -24,7 +24,8 @@ fun TodoDetail(
     todo: Todo
 ) {
     Card(
-        shape = RoundedCornerShape(5.dp)
+        shape = RoundedCornerShape(5.dp),
+        modifier = Modifier.padding(10.dp)
     ) {
         Row(
             modifier = Modifier.padding(16.dp),
