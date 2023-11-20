@@ -10,6 +10,7 @@ import androidx.room.Query
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.Update
+import com.example.plannerproject.User
 
 @Dao
 interface TodoDao {
@@ -25,7 +26,39 @@ interface TodoDao {
     @Query("SELECT * from todos")
     suspend fun getTodos(): List<Todo>
 }
-@Database(entities = [Todo::class], version = 9, exportSchema = false)
+
+@Dao
+interface UserDao {
+    //also friends list
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insert(user: User)
+
+    @Update
+    suspend fun update(user: User)
+
+    @Delete
+    suspend fun delete(user: User)
+
+    @Query("SELECT * from users")
+    suspend fun getUsers(): List<User>
+}
+@Database(entities = [Todo::class,User::class], version = 9, exportSchema = false)
 abstract class TodoDatabase : RoomDatabase() {
     abstract fun todoDao(): TodoDao
+    abstract fun userDao(): UserDao
+
+    companion object {
+        @Volatile
+        private var Instance: TodoDatabase? = null
+
+        fun getDatabase(context: Context): TodoDatabase {
+            // if the Instance is not null, return it, otherwise create a new database instance.
+            return Instance ?: synchronized(this) {
+                Room.databaseBuilder(context, TodoDatabase::class.java, "item_database")
+                    .build()
+                    .also { Instance = it }
+            }
+        }
+    }
 }

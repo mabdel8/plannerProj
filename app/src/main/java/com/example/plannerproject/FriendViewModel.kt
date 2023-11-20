@@ -1,6 +1,7 @@
 package com.example.plannerproject
 
 import android.app.Application
+import android.content.Context
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
@@ -21,7 +22,7 @@ class FriendViewModel(app: Application) : AndroidViewModel(app) {
     val testFriend = User(UUID.randomUUID(),"TestFriend1",20)
 
 
-    private val _repository: UserRepository = UserOfflineRepository(getApplication())
+    private val _repository: UserRepository = UserOfflineRepository(getApplication(),)
 
     init {
         viewModelScope.launch {

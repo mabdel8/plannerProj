@@ -2,17 +2,17 @@ package com.example.plannerproject
 
 import kotlinx.coroutines.flow.Flow
 import android.app.Application
+import android.content.Context
 import androidx.room.Room
+import com.example.plannerproject.data.TodoDatabase
 
-class UserOfflineRepository(app: Application) : UserRepository{
+class UserOfflineRepository(app: Application, private val context: Context) : UserRepository{
 
-        private val db: UserDatabase
+        private val db: TodoDatabase
 
         init {
             // create the database
-            db = Room.databaseBuilder(app, UserDatabase::class.java, "user.db")
-                .fallbackToDestructiveMigration()
-                .build()
+            db = TodoDatabase.getDatabase(context)
         }
         override suspend fun getUsers(): List<User> {
             return db.userDao().getUsers()

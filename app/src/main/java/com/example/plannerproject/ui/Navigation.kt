@@ -26,6 +26,8 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.plannerproject.FriendScreen
+import com.example.plannerproject.FriendViewModel
 import com.example.plannerproject.ui.theme.Screen
 import com.example.plannerproject.ui.todolist.TodoListView
 import com.example.plannerproject.ui.todolist.TodoListViewModel
@@ -35,6 +37,7 @@ import com.example.plannerproject.ui.todolist.TodoListViewModel
 fun Navigation() {
     val navController = rememberNavController()
     val vm: TodoListViewModel = viewModel()
+    val vm2: FriendViewModel = viewModel()
 
     NavHost(navController = navController, startDestination = Screen.MainScreen.route) {
         composable(route = Screen.MainScreen.route) {
@@ -49,7 +52,7 @@ fun Navigation() {
         composable(
             route = Screen.FriendScreen.route
         ){
-            FriendScreen(navController = navController)
+            FriendListScreen(vm2, navController)
         }
         composable(
             route = Screen.LeaderScreen.route
@@ -193,3 +196,20 @@ fun TodoListScreen(
     )
 }
 
+@OptIn(ExperimentalLayoutApi::class)
+@ExperimentalFoundationApi
+@Composable
+fun FriendListScreen(
+    vm: FriendViewModel,
+    navController: NavController
+) {
+    val users by vm.users
+    val waiting by vm.waiting
+
+    FriendScreen(
+        users,
+        waiting,
+        onDelete =vm::deleteUser,
+        navController
+    )
+}
