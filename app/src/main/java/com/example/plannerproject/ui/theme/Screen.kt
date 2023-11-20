@@ -5,4 +5,5 @@ sealed class Screen(val route: String) {
     object PlannerScreen : Screen("planner_screen")
     object FriendScreen : Screen("friend_screen")
     object LeaderScreen : Screen("leader_screen")
+    object AddTaskScreen: Screen("addtask_screen")
 }

@@ -23,7 +23,7 @@ interface TodoDao {
     suspend fun delete(todo: Todo)
 
     @Query("SELECT * from todos")
-    fun getTodos(): List<Todo>
+    suspend fun getTodos(): List<Todo>
 }
 @Database(entities = [Todo::class], version = 6, exportSchema = false)
 abstract class TodoDatabase : RoomDatabase() {

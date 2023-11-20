@@ -58,8 +58,8 @@ fun CheckboxLabel(text: String, points: Int) {
             checked = checked.value,
             onCheckedChange = { isChecked -> checked.value = isChecked },
         )
-        Row {
-            Text("$text")
+        Row() {
+            Text("$text", fontSize = 30.sp)
             Text("+$points", fontSize = 12.sp, color = Color.Red, modifier = Modifier
                 .padding(horizontal = 5.dp)
                 .border(width = 1.dp, color = Color.Black, shape = RoundedCornerShape(50))

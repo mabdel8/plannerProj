@@ -44,7 +44,7 @@ fun Navigation() {
             route = Screen.PlannerScreen.route
         ){
 //            PlannerScreen(navController = navController)
-            TodoListScreen(vm)
+            TodoListScreen(vm,navController)
         }
         composable(
             route = Screen.FriendScreen.route
@@ -55,6 +55,11 @@ fun Navigation() {
             route = Screen.LeaderScreen.route
         ){
             LeaderScreen(navController = navController)
+        }
+        composable(
+            route = Screen.AddTaskScreen.route
+        ){
+            AddTaskScreen(navController = navController)
         }
     }
 }
@@ -170,7 +175,8 @@ fun MainScreen(navController: NavController) {
 @ExperimentalFoundationApi
 @Composable
 fun TodoListScreen(
-    vm: TodoListViewModel
+    vm: TodoListViewModel,
+    navController: NavController
 ) {
     val todos by vm.todos
     val waiting by vm.waiting
@@ -178,6 +184,7 @@ fun TodoListScreen(
     TodoListView(
         todos,
         waiting,
-        onDelete =vm::deleteTodo
+        onDelete =vm::deleteTodo,
+        navController
     )
 }

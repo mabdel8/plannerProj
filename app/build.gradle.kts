@@ -79,6 +79,8 @@ dependencies {
     implementation ("com.google.dagger:dagger:2.20")
     kapt ("com.google.dagger:dagger-compiler:2.20")
 
+    implementation ("androidx.compose.material3:material3:1.2.0-alpha11")
+
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

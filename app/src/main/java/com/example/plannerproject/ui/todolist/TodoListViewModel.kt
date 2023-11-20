@@ -27,7 +27,9 @@ class TodoListViewModel(app: Application) : AndroidViewModel(app) {
     init {
         viewModelScope.launch {
             _repository.insertTodo(temp)
+            _todos.value = _repository.getTodos()
         }
+
 
         _waiting = mutableStateOf(false)
         waiting = _waiting

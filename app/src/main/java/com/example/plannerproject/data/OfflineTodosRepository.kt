@@ -14,7 +14,7 @@ class OfflineTodosRepository(app: Application) : TodosRepository{
             .fallbackToDestructiveMigration()
             .build()
     }
-    override fun getTodos(): List<Todo> {
+    override suspend fun getTodos(): List<Todo> {
         return db.todoDao().getTodos()
     }
 
