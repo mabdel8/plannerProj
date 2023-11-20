@@ -37,19 +37,21 @@ fun UserDetail(
 
     ) {
         Row(
-            modifier = Modifier.padding(16.dp),
+            modifier = Modifier.padding(15.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             Row(
                 modifier = Modifier
-                    .padding(5.dp)
                     .fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Center
+                horizontalArrangement = Arrangement.SpaceEvenly
+               // horizontalArrangement = Arrangement.Start
             ) {
               Text(text = user.userName, fontSize = 30.sp,
                   fontWeight = FontWeight.Bold)
+                /*Text(text = "$user.score", fontSize = 30.sp,
+                    fontWeight = FontWeight.Bold)*/
             }
         }
     }
