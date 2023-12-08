@@ -12,7 +12,9 @@ class UserOfflineRepository(app: Application, private val context: Context) : Us
 
         init {
             // create the database
-            db = TodoDatabase.getDatabase(context)
+            db = Room.databaseBuilder(app, TodoDatabase::class.java, "todo.db")
+                .fallbackToDestructiveMigration()
+                .build()
         }
         override suspend fun getUsers(): List<User> {
             return db.userDao().getUsers()

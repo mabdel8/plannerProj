@@ -68,6 +68,15 @@ fun Navigation() {
                     navController.popBackStack()
                 })
         }
+        composable(
+            route = Screen.AddFriendScreen.route
+        ){
+            AddFriendScreen(navController = navController, onAddUser = { user ->
+                vm2.addUser(user)
+                navController.popBackStack()
+            })
+        }
+
     }
 }
 
