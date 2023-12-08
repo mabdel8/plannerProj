@@ -22,7 +22,7 @@ class FriendViewModel(app: Application) : AndroidViewModel(app) {
     val testFriend = User(UUID.randomUUID(),"TestFriend1",20)
 
 
-    private val _repository: UserRepository = UserOfflineRepository(getApplication(),)
+    private val _repository: UserRepository = UserOfflineRepository(getApplication(), getApplication())
 
     init {
         viewModelScope.launch {

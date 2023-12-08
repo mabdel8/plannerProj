@@ -12,9 +12,9 @@ interface AppContainer {
 /**
  * [AppContainer] implementation that provides instance of [OfflineItemsRepository]
  */
-class AppDataContainer(private val context: Context) : AppContainer {
-
-    override val todosRepository: TodosRepository by lazy {
-        OfflineTodosRepository(TodoDatabase.getDatabase(context).todoDao())
-    }
-}
+//class AppDataContainer(private val context: Context) : AppContainer {
+//
+//    override val todosRepository: TodosRepository by lazy {
+//        OfflineTodosRepository(TodoDatabase.getDatabase(context).todoDao())
+//    }
+//}
